@@ -1,0 +1,10 @@
+Artem Sergeevich 5 5 5
+Sergei Vasilevich 4 4 4
+Genadiy Victorovich 3 3 3
+Natalya Sergeevna 2 2 2
+Sergey Artemovich 1 1 1
+Victor Iosifovich 5 5 4
+Ivan Ivanovich 5 4 4
+Anastasia Afanasevna 4 4 3
+Olga Skvorcova 4 3 3
+Nikolai Sobolev 3 3 2
