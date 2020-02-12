@@ -36,6 +36,9 @@ namespace my_list
 		T1& operator[](const size_t index);
 		bool operator <(list<T1> const &other);
 		bool operator >(list<T1> const &other);
+		//list<T1>& operator=(const list<T1> &other);
+
+		static void sort(list<T1>  &first, list<T1>  &second);
 		
 
 		size_t get_size() const;

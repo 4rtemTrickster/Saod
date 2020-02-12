@@ -50,7 +50,7 @@ T1 my_list::list<T1>::pop_front()
 {
 	if (this->head == nullptr)
 		throw std::runtime_error("head == nullptr");
-	
+
 	T1 ret = this->head->data;
 
 	node<T1> *tmp = this->head;
@@ -127,7 +127,7 @@ void my_list::list<T1>::insert(T1 data, size_t index)
 {
 	if (index > this->size)
 		throw std::runtime_error("out of range");
-	
+
 	if (index == 0)
 		this->push_front(data);
 	else
@@ -138,7 +138,7 @@ void my_list::list<T1>::insert(T1 data, size_t index)
 			prev = prev->ptr_next;
 
 		prev->ptr_next = new node<T1>(data, prev->ptr_next);
-		
+
 		++this->size;
 	}
 }
@@ -179,6 +179,46 @@ template <typename T1>
 bool my_list::list<T1>::operator>(list<T1> const& other)
 {
 	return this->size > other.size;
+}
+
+
+template <typename T1>
+void my_list::list<T1>::sort(list<T1>  &first, list<T1>  &second)
+{
+	list<T1> ret;
+	int n1 = 0;
+	int n2 = 0;
+	size_t len1 = first.size;
+	size_t len2 = second.size;
+
+	while (len1 && len2)
+	{
+		if (first[n1] < second[n2])
+		{
+			ret.push_back(first[n1]);
+			n1++;
+			--len1;
+		}
+		else
+		{
+			ret.push_back(second[n2]);
+			n2++;
+			--len2;
+		}
+	}
+	if (len1 == 0)
+	{
+		for (size_t i = 0; i < len2; i++)
+			ret.push_back(second[n2++]);
+	}
+	else if (len2 == 0)
+	{
+		for (size_t i = 0; i < len1; i++)
+			ret.push_back(first[n1++]);
+	}
+
+	for (size_t i = 0; i < ret.size; i++)
+		std::cout << ret[i] << " ";
 }
 
 template <typename T1>

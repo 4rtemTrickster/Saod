@@ -50,6 +50,7 @@ int main()
 	{
 		my_list::list<int> first;
 		my_list::list<int> second;
+		my_list::list<int> res;
 
 		first.push_back(1);
 		first.push_back(3);
@@ -59,22 +60,10 @@ int main()
 		second.push_back(4);
 		second.push_back(6);
 
-	
-		int *first_arr = new int[first.get_size()];
-		int *second_arr = new int[first.get_size()];
+		my_list::list<int>::sort(first, second);
 
-		for (size_t i = 0; i < first.get_size(); i++)
-			first_arr[i] = first[i];
-		for (size_t i = 0; i < second.get_size(); i++)
-			second_arr[i] = second[i];
-		
-
-		int *sorted = merge(first_arr, second_arr, first.get_size(), second.get_size());
-
-		
-
-		for (size_t i = 0; i < first.get_size() + second.get_size(); i++)
-			std::cout << sorted[i] << std::endl;
+		for (size_t i = 0; i < res.get_size(); i++)
+			std::cout << res[i] << std::endl;
 	}
 	catch (std::runtime_error &error)
 	{
