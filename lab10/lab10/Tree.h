@@ -1,48 +1,43 @@
 ﻿#pragma once
 #include <list>
 
-template<typename T1>
+template<typename T>
 class Tree
 {
 public:
-	template<typename T2>
 	class Node
 	{
 	private:
-		T2 data_;
+		T data_;
 		std::list<Node*> next_nodes_list_;
 
 	public:
-		Node(T2 data);
+		Node(const T& data);
+
+		friend class Tree;
 	};
 
-	void add_node(T1 data, Node<T1>& node);
+	void add_node(const T& data, Node *node);
 
-	Node<T1>& get_root();
+	      Node *get_root()       { return root_; }
+	const Node *get_root() const { return root_; }
 
 private:
-	Node<T1> *root_ = nullptr;
+	Node *root_ = nullptr;
 	
 };
 
-template <typename T1>
-template <typename T2>
-Tree<T1>::Node<T2>::Node(T2 data)
+template <typename T>
+Tree<T>::Node::Node(const T& data)
+	: data_(data)
 {
-	this->data_ = data;
 }
 
-template <typename T1>
-void Tree<T1>::add_node(T1 data, Node<T1>& node)
+template <typename T>
+void Tree<T>::add_node(const T& data, Node *node)
 {
 	if(this->root_ == nullptr)
-		this->root_ = new Node<T1>(data);
+		this->root_ = new Node(data);
 	else
-		node->next_nodes_list_.push_back(new Node<T1>(data));
-}
-
-template <typename T1>
-typename Tree<T1>::template Node<T1>& Tree<T1>::get_root()
-{
-	return this->root_;
+		node->next_nodes_list_.push_back(new Node(data));
 }
