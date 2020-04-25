@@ -1,29 +1,71 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 template <class NODETYPE> class Tree;
 #include "node.h"
 
+#include "../ObjectClass/Object.h"
+
 template <class NODETYPE>
-class Tree
+class Tree : public Object
 {
 public:
 	Tree();
 	int insert_node(const NODETYPE &);
 	TreeNode<NODETYPE>* delete_node(TreeNode<NODETYPE> *);
 	void inorder_walk(TreeNode<NODETYPE>*);
+
 	TreeNode<NODETYPE>* find_max(TreeNode<NODETYPE>*);
 	TreeNode<NODETYPE>* find_min(TreeNode<NODETYPE>*);
 	TreeNode<NODETYPE>* find_node(TreeNode<NODETYPE>*, const NODETYPE &);
 	TreeNode<NODETYPE>* find_succsessor(const NODETYPE &);
-	TreeNode<NODETYPE> *get_root();
+	TreeNode<NODETYPE>* get_root();
+
+	std::ostream& operator << (std::ostream& out) override
+	{
+		inorder_out_data(this->get_root(), out);
+		return out;
+	}
+
+	std::istream& operator >> (std::istream& in) override
+	{
+		int tmp;
+		in >> tmp;
+		this->insert_node(tmp);
+		return in;
+	}
+
+	unsigned int get_id() override
+	{
+		return this->ID;
+	}
+
+	std::string get_class_name() override
+	{
+		return this->class_name;
+	}
+
 private:
 	TreeNode<NODETYPE> *root;
+
+	void inorder_out_data(TreeNode<NODETYPE>* n, std::ostream& out)
+	{
+		if (n != 0)
+		{
+			inorder_walk(n->left);
+			out << n->get_data() << std::endl;
+			inorder_walk(n->right);
+		}
+	}
 };
 
 template<class NODETYPE>
 Tree<NODETYPE>::Tree()
 {
+
+	ID = 1;
+	class_name = "Bin tree";
 	root = 0;
 }
 template<class NODETYPE>
@@ -55,6 +97,7 @@ int Tree<NODETYPE>::insert_node(const NODETYPE &x)
 	}
 	return 0;
 }
+
 template<class NODETYPE>
 TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE> *z)
 {
@@ -83,6 +126,7 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE> *z)
 		z->data = y->get_data();
 	return y;
 }
+
 template<class NODETYPE>
 TreeNode<NODETYPE>* Tree<NODETYPE>::find_max(TreeNode<NODETYPE>* x)
 {
@@ -116,6 +160,7 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::find_succsessor(const NODETYPE & val)
 	}
 	return y;
 }
+
 template<class NODETYPE>
 TreeNode<NODETYPE>* Tree<NODETYPE>::find_node(TreeNode<NODETYPE>* n,
 	const NODETYPE & val)
@@ -127,6 +172,7 @@ TreeNode<NODETYPE>* Tree<NODETYPE>::find_node(TreeNode<NODETYPE>* n,
 	else
 		return find_node(n->left, val);
 }
+
 template<class NODETYPE>
 void Tree<NODETYPE>::inorder_walk(TreeNode<NODETYPE>* n)
 {

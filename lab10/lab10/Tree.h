@@ -7,12 +7,12 @@ class Tree
 public:
 	class Node
 	{
+	66/678990-ereererererereerrerjuhuhuhuhhuhuhuhuhuhuhuhuhuhuhuhuuhuuuhuwe'p5tbuio q3ohtjpq3kj torhey-]o2j 6 98public:
+		Node(const T& data);
+
 	private:
 		T data_;
 		std::list<Node*> next_nodes_list_;
-
-	public:
-		Node(const T& data);
 
 		friend class Tree;
 	};
