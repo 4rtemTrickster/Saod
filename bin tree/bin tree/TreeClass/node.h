@@ -1,6 +1,7 @@
 #pragma once
 
-template <class NODETYPE> class TreeNode
+template <class NODETYPE> 
+class TreeNode
 {
 	friend class Tree<NODETYPE>;
 public:
@@ -20,7 +21,7 @@ TreeNode <NODETYPE>::TreeNode(const NODETYPE &a)
 	left = right = 0;
 }
 template <class NODETYPE>
-NODETYPE TreeNode <NODETYPE>::get_data()
+NODETYPE TreeNode<NODETYPE>::get_data()
 {
 	return data;
 }

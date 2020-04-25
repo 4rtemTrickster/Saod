@@ -1,5 +1,4 @@
 #include "TreeClass/tree.h"
-#include <vector>
 
 int main()
 {
@@ -11,14 +10,19 @@ int main()
 	for (auto element : arr)
 		intTree.insert_node(element);
 
-	intTree.inorder_walk(intTree.get_root());
+	//intTree.inorder_walk(intTree.get_root());
 
-	intTree >> std::cin;
+//	intTree >> std::cin;
 
-	std::cout << std::endl;
+//	std::cout << std::endl;
 
 	intTree << std::cout;
 
+	std::string tmp;
+
+	intTree.load_to_str(tmp);
+
+	std::cout << tmp;
 
 	system("pause");
 	return 0;

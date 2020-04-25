@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 
 template <class NODETYPE> class Tree;
 #include "node.h"
@@ -46,6 +48,17 @@ public:
 		return this->class_name;
 	}
 
+	void load_from_str(std::string& in) override
+	{
+		for (size_t i = 0; i < in.size(); i++)
+			insert_node(in[i]);
+	}
+
+	void load_to_str(std::string& out) override
+	{
+		inorder_out_str(this->root, out);
+	}
+
 private:
 	TreeNode<NODETYPE> *root;
 
@@ -53,9 +66,21 @@ private:
 	{
 		if (n != 0)
 		{
-			inorder_walk(n->left);
+			inorder_out_data(n->left, out);
 			out << n->get_data() << std::endl;
-			inorder_walk(n->right);
+			inorder_out_data(n->right, out);
+		}
+	}
+
+	void inorder_out_str(TreeNode<NODETYPE>* n, std::string& out)
+	{
+		if (n != 0)
+		{
+			inorder_out_str(n->left, out);
+			std::stringstream tmp_ss;
+			tmp_ss << n->get_data();
+			out += (tmp_ss.str() + " ");
+			inorder_out_str(n->right, out);
 		}
 	}
 };
@@ -63,7 +88,6 @@ private:
 template<class NODETYPE>
 Tree<NODETYPE>::Tree()
 {
-
 	ID = 1;
 	class_name = "Bin tree";
 	root = 0;
