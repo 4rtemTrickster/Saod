@@ -9,10 +9,11 @@ void myTable::String::Word::Show()
 	std::cout << std::endl;
 }
 
-void myTable::String::addKword(std::string kWord, uint count)
+void myTable::String::addKword(std::string kWord, uint count, std::vector<uint> idVect)
 {
 	this->string += kWord;
-	this->kmap.emplace(kWord, count);
+	Word tmp(kWord, idVect);
+	this->kmap.emplace(tmp, count);
 }
 
 uint myTable::String::searchKword(std::string kWord)
@@ -30,17 +31,18 @@ uint myTable::String::searchKword(std::string kWord)
 
 void myTable::addString(String str, uint ID)
 {
-	this->strMap.emplace(ID, str);
+	//this->strMap.emplace(ID, str);
 }
 
 uint myTable::search(std::string kWord)
 {
 	uint counter = 0;
+	uint tmpCount = 0;
 	for (auto var : this->strMap)
 	{
 		String tmp = var.second;
-		uint tmpCount;
-		if (tmpCount == tmp.searchKword(kWord))
+
+		if (tmpCount = tmp.searchKword(kWord))
 			counter += tmpCount;
 	}
 	return counter;

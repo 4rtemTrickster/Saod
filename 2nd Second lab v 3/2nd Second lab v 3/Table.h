@@ -41,7 +41,7 @@ private:
 		String(std::string str) :
 			string(str) {}
 
-		void addKword(std::string kWord, uint count);
+		void addKword(std::string kWord, uint count, std::vector<uint> idVect);
 
 		uint searchKword(std::string kWord);
 
