@@ -124,16 +124,14 @@ void Spisok::Poisk(svqz uksp, int ment)
 }
 
 void Spisok::AddGraph(int x, int y)
-// Добавление дуги (x,y) (если ее не было!) в граф,
-// представленный списками смежности beg .
 {
-    svqz ukzv, uzel; // Рабочие указатели.
+    svqz ukzv, uzel;
 
     if (beg[x] != NULL)
     {
         Poisk(beg[x], y);
         if (GetPoisk() == NULL)
-        { //Добавление элемента в конец списка, заданного указателем beg[x].
+        { 
             uzel = new (Leader);
             (*uzel).Key = y;
             (*uzel).Sled = NULL;

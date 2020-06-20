@@ -20,7 +20,7 @@ int main()
 		fs.open("read.txt",std::ios_base::in | std::ios_base::out);
 
 #ifdef REWRITE
-		for (size_t i = 0; i < 20; i++)
+		for (size_t i = 0; i < 50; i++)
 			fs << rand() % 10 << " ";
 #endif
 		fs.seekg(0);

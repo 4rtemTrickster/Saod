@@ -41,7 +41,7 @@ int main()
 		Flights::Flight(32,6)
 	};
 
-	std::cout << mbsearch(myFlights, 7);
+	std::cout << mbsearch(myFlights, 3);
 
 	myFlights[0].addNewPassenger("Artem", "Sergeevich", "Korneev");
 	myFlights[0].ShowPassengers();
